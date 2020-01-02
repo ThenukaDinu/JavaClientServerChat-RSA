@@ -37,7 +37,7 @@ public class GossipClient
 		
 
 			String receiveMessage, sendMessage, encryptedString, decryptedString;  
-			final String secretKeyED = "ssshhhhhhhhhhh!!!!";
+			final String secretKey = "ssshhhhhhhhhhh!!!!";
 
 			System.out.println("Start the chitchat, type and press Enter key");
 			System.out.println("******This Chat is Encrypted Using AES Algorithm******\n");
@@ -47,7 +47,7 @@ public class GossipClient
 				// keyboard reading
 				sendMessage = keyRead.readLine();  
 				//encrypt the message before send to server	
-				encryptedString = AESExample.encrypt(sendMessage); 
+				encryptedString = AESExample.encrypt(sendMessage, secretKey); 
 				// sending to server
 				pwrite.println(encryptedString);   
 				// flush the data    
@@ -59,7 +59,7 @@ public class GossipClient
 				//System.out.println("Server: " + receiveMessage); // This is encrypted message
 				
 				//decrypt the message receiving from server
-				decryptedString = AESExample.decrypt(receiveMessage); 
+				decryptedString = AESExample.decrypt(receiveMessage, secretKey); 
 				// displaying at DOS prompt
 				System.out.println("Server: " + decryptedString); 
 				}         

@@ -11,7 +11,6 @@ public class AESExample {
 
 	private static SecretKeySpec secretKey;
 	private static byte[] key;
-	final static String secretKeyED = "ssshhhhhhhhhhh!!!!";
 
 	public static void setKey(String myKey) {
 		MessageDigest sha = null;
@@ -28,9 +27,9 @@ public class AESExample {
 		}
 	}
 
-	public static String encrypt(String strToEncrypt) {
+	public static String encrypt(String strToEncrypt, String secret) {
 		try {
-			setKey(secretKeyED);
+			setKey(secret);
 			Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
 			cipher.init(Cipher.ENCRYPT_MODE, secretKey);
 			return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes("UTF-8")));
@@ -40,9 +39,9 @@ public class AESExample {
 		return null;
 	}
 
-	public static String decrypt(String strToDecrypt) {
+	public static String decrypt(String strToDecrypt, String secret) {
 		try {
-			setKey(secretKeyED);
+			setKey(secret);
 			Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5PADDING");
 			cipher.init(Cipher.DECRYPT_MODE, secretKey);
 			return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
@@ -52,23 +51,5 @@ public class AESExample {
 		return null;
 	}
 	
-	
-	
-	
-	//public void setKey(String secretKey) {
-		//secretKey = 
-	//}
-	
-	//public static void main(String[] args) 
-	//{
-	    //final String secretKey = "ssshhhhhhhhhhh!!!!";
-	     
-	    //String originalString = "NIBM AES practical session";
-	    //String encryptedString = AESExample.encrypt(originalString) ;
-	    //String decryptedString = AESExample.decrypt(encryptedString) ;
-	     
-	    //System.out.println(originalString);
-	    //System.out.println(encryptedString);
-	    //System.out.println(decryptedString);
-	//}
+
 }

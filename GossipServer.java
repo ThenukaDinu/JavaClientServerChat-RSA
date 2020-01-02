@@ -45,7 +45,7 @@ public class GossipServer
 			BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
 			
 			String receiveMessage, sendMessage, decryptedString, encryptedString;  
-			final String secretKeyED = "ssshhhhhhhhhhh!!!!";
+			final String secretKey = "ssshhhhhhhhhhh!!!!";
 	
 			while(true)
 			{
@@ -54,14 +54,14 @@ public class GossipServer
 					//System.out.println("Client: " + receiveMessage); // This is encrypted message
 				
 					//decrypt the message receiving from client
-					decryptedString = AESExample.decrypt(receiveMessage);
+					decryptedString = AESExample.decrypt(receiveMessage, secretKey);
 					System.out.println("Client: " + decryptedString);         
 				}  
 			
 				sendMessage = keyRead.readLine();
 				
 				//encrypt the message before send to client	
-				encryptedString = AESExample.encrypt(sendMessage);	
+				encryptedString = AESExample.encrypt(sendMessage, secretKey);	
 				pwrite.println(encryptedString);             
 				pwrite.flush();
 			}  
