@@ -1,34 +1,37 @@
 import java.io.*;
 import java.net.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.security.KeyFactory;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.X509EncodedKeySpec;
+
+import Algorithm.RSAExample;
 public class GossipServer
 {	
-	// public static void initiateConnection()
-	// {
-	// 	ServerSocket sersock = new ServerSocket(3000);
-	// 	System.out.println("Server  ready for chatting");
-	// 	System.out.println("******This Chat is Encrypted Using AES Algorithm******\n");
-	  
-	// 	Socket sock = sersock.accept( );    
-		
-    //     // reading from keyboard (keyRead object)
-	// 	BufferedReader keyRead = new BufferedReader(new InputStreamReader(System.in));
-		
-	//     // sending to client (pwrite object)
-	// 	OutputStream ostream = sock.getOutputStream(); 
-	// 	PrintWriter pwrite = new PrintWriter(ostream, true);
- 
-    //     // receiving from server ( receiveRead  object)
-	// 	InputStream istream = sock.getInputStream();
-		
-	// 	BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
-	// }
-	
 	public static void chat()
 	{
 		try{
+			Path path = Paths.get("F:\\NIBM\\DOC\\Software security\\CourseWork02\\HNDSE Software security Chat App\\Client Server Chat With RSA\\GeneratePublicPrivateKeys\\Server\\privateKey");
+			byte[] myPrivateKeyByte = Files.readAllBytes(path);
+			path = Paths.get("F:\\NIBM\\DOC\\Software security\\CourseWork02\\HNDSE Software security Chat App\\Client Server Chat With RSA\\GeneratePublicPrivateKeys\\client\\publicKey");
+			byte[] clientPublicKeyByte = Files.readAllBytes(path);
+
+			PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(myPrivateKeyByte);
+			KeyFactory kf = KeyFactory.getInstance("RSA");
+			PrivateKey myPrivateKey = kf.generatePrivate(ks);
+
+			/* Generate public key. */
+			X509EncodedKeySpec ks2 = new X509EncodedKeySpec(clientPublicKeyByte);
+			KeyFactory kf2 = KeyFactory.getInstance("RSA");
+			PublicKey clientPublicKey = kf2.generatePublic(ks2);
+
 			ServerSocket sersock = new ServerSocket(3000);
 			System.out.println("Server  ready for chatting");
-			System.out.println("******This Chat is Encrypted Using AES Algorithm******\n");
+			System.out.println("******This Chat is Encrypted Using RSA Algorithm******");
 		
 			Socket sock = sersock.accept( );    
 			
@@ -45,7 +48,7 @@ public class GossipServer
 			BufferedReader receiveRead = new BufferedReader(new InputStreamReader(istream));
 			
 			String receiveMessage, sendMessage, decryptedString, encryptedString;  
-			final String secretKey = "ssshhhhhhhhhhh!!!!";
+			
 	
 			while(true)
 			{
@@ -54,14 +57,14 @@ public class GossipServer
 					//System.out.println("Client: " + receiveMessage); // This is encrypted message
 				
 					//decrypt the message receiving from client
-					decryptedString = AESExample.decrypt(receiveMessage, secretKey);
-					System.out.println("Client: " + decryptedString);         
+					decryptedString = RSAExample.decrypt(receiveMessage, myPrivateKey);
+					System.out.println("\nClient: " + decryptedString + "\n");         
 				}  
 			
 				sendMessage = keyRead.readLine();
 				
 				//encrypt the message before send to client	
-				encryptedString = AESExample.encrypt(sendMessage, secretKey);	
+				encryptedString = RSAExample.encrypt(sendMessage, clientPublicKey);	
 				pwrite.println(encryptedString);             
 				pwrite.flush();
 			}  
@@ -74,8 +77,6 @@ public class GossipServer
 	  
 	public static void main(String[] args) throws Exception
 	{
-		
-		//GossipServer.initiateConnection();
 		GossipServer.chat();
     }                    
 }                        
