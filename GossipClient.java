@@ -21,9 +21,10 @@ public class GossipClient
 			//read server public key
 			Path path = Paths.get("F:\\NIBM\\DOC\\Software security\\CourseWork02\\HNDSE Software security Chat App\\Client Server Chat With RSA\\GeneratePublicPrivateKeys\\client\\privateKey");
 			byte[] myPrivateKeyByte = Files.readAllBytes(path);
-			path = Paths.get("F:\\NIBM\\DOC\\Software security\\CourseWork02\\HNDSE Software security Chat App\\Client Server Chat With RSA\\GeneratePublicPrivateKeys\\server\\publicKey");
-			byte[] serverPublicKeyByte = Files.readAllBytes(path);
+			Path path2 = Paths.get("F:\\NIBM\\DOC\\Software security\\CourseWork02\\HNDSE Software security Chat App\\Client Server Chat With RSA\\GeneratePublicPrivateKeys\\server\\publicKey");
+			byte[] serverPublicKeyByte = Files.readAllBytes(path2);
 
+			/* Generate private key. */
 			PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(myPrivateKeyByte);
 			KeyFactory kf = KeyFactory.getInstance("RSA");
 			PrivateKey myPrivateKey = kf.generatePrivate(ks);
@@ -67,13 +68,15 @@ public class GossipClient
 			
 				//receive from server
 				if((receiveMessage = receiveRead.readLine()) != null) 
-				{
-				System.out.println("Server: " + receiveMessage); // This is encrypted message
-				
+				{				
+				// This is encrypted message
+				System.out.println("\nServer: " + receiveMessage); 
+
 				//decrypt the message receiving from server
 				decryptedString = RSAExample.decrypt(receiveMessage, myPrivateKey); 
+
 				// displaying at DOS prompt
-				System.out.println("\nServer: " + decryptedString + "\n"); 
+				System.out.println("Server: " + decryptedString + "\n"); 
 				}         
 			} 
 		}
@@ -85,7 +88,6 @@ public class GossipClient
 	 
 	public static void main(String[] args) throws Exception
 	{
-		//GossipClient.initiateConnection();
 		GossipClient.chat();    
 	}                    
 }            
