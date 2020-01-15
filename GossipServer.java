@@ -13,6 +13,9 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 import Algorithm.RSAExample;
 public class GossipServer
@@ -24,6 +27,21 @@ public class GossipServer
 	X509EncodedKeySpec ks2;
 	KeyFactory kf, kf2;
 	Path path, path2;
+	static Logger logger;
+	FileHandler fh;
+	ServerSocket sersock;
+
+	public GossipServer() throws Exception {
+		sersock = new ServerSocket(3000);
+
+		logger = Logger.getLogger("MyLog");
+		fh = new FileHandler("F:/NIBM/DOC/Software security/CourseWork02/HNDSE Software security Chat App/Client Server Chat With RSA/logs/ServerLogFile.log");
+		logger.addHandler(fh);
+		SimpleFormatter formatter = new SimpleFormatter();
+		fh.setFormatter(formatter);
+		logger.setUseParentHandlers(false);
+		logger.info("Server Connected.\n");
+	}
 
 	public void readKeys() throws Exception
 	{
@@ -45,7 +63,6 @@ public class GossipServer
 
 	public void chat() throws Exception
 	{
-		ServerSocket sersock = new ServerSocket(3000);
 		System.out.println("Server  ready for chatting");
 		System.out.println("******This Chat is Encrypted Using RSA Algorithm******");
 	
@@ -81,6 +98,10 @@ public class GossipServer
 			
 			//encrypt the message before send to client	
 			encryptedString = RSAExample.encrypt(sendMessage, clientPublicKey);	
+
+			// log
+			logger.info("Original Message: " + sendMessage + "\n" + "Encrypted Message: " + encryptedString + "\n");
+
 			pwrite.println(encryptedString);             
 			pwrite.flush();
 		}  
@@ -93,73 +114,89 @@ public class GossipServer
 			GS.readKeys();
 			GS.chat();
 		}
-		catch(ClassNotFoundException exception)
-		{
+		catch (ClassNotFoundException exception) {
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(FileNotFoundException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(UTFDataFormatException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(UnsupportedEncodingException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(InterruptedException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(GeneralSecurityException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(BufferOverflowException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		} 
 		catch(BufferUnderflowException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(InvalidMarkException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(ReadOnlyBufferException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(PortUnreachableException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(ProtocolException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(SocketTimeoutException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(ObjectStreamException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(SocketException exception) 
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(IOException exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
 		catch(Exception exception)
 		{
 			System.out.println(exception.getMessage());
+			logger.severe(exception.getMessage());
 		}
     }                    
 }                        
