@@ -1,8 +1,13 @@
 import java.io.*;
 import java.net.*;
+import java.nio.BufferOverflowException;
+import java.nio.BufferUnderflowException;
+import java.nio.InvalidMarkException;
+import java.nio.ReadOnlyBufferException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.GeneralSecurityException;
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -91,8 +96,73 @@ public class GossipClient
 			GC.readKeys();
 			GC.chat();
 		}
-		catch(Exception e) {
-
+		catch(ClassNotFoundException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(FileNotFoundException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(UTFDataFormatException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(UnsupportedEncodingException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(InterruptedException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(GeneralSecurityException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(BufferOverflowException exception)
+		{
+			System.out.println(exception.getMessage());
+		} 
+		catch(BufferUnderflowException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(InvalidMarkException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(ReadOnlyBufferException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(PortUnreachableException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(ProtocolException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(SocketTimeoutException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(ObjectStreamException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(SocketException exception) 
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(IOException exception)
+		{
+			System.out.println(exception.getMessage());
+		}
+		catch(Exception exception)
+		{
+			System.out.println(exception.getMessage());
 		}
 	}                    
 }            
