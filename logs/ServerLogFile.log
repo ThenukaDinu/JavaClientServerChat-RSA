@@ -1,17 +1,15 @@
-Jan 15, 2020 8:41:51 PM GossipServer <init>
+Jan 17, 2020 5:20:51 PM GossipServer <init>
 INFO: Server Connected.
 
-Jan 15, 2020 8:42:07 PM GossipServer chat
-INFO: Original Message: hii
-Encrypted Message: KruEzE3V/hD/wvG8dcR/kyXCRnOirOG5ZiOho0cb8/q+z6h9e3ML0uzlZZEzrGLB2n7teb9hYtOJvaQLu4t8afy4LzeUQv+wJVA6Wk7Uy2+NxeaFl8jLmZ4fGmGbdZUC2EDNyaOAIZyZzPUaDZwgyywOPA5FvdHzw0qJkzgwEgY=
+Jan 17, 2020 5:21:09 PM GossipServer chat
+INFO: Original Message: Hello
+Encrypted Message: RcgZQFwExd9SDWi7UfSMWg==
 
-Jan 15, 2020 8:42:35 PM GossipServer chat
-INFO: Original Message: i am fine thanks. how are you?
-Encrypted Message: kr/wtqHnemre7VrXVfb54vVYqwzuHniCigrgc3PrK4LYTtGd+tSUDq1/AdfQ78Qfdo7RWNW6yzgaUfWpzcWCuP5RJGmtUu6OgVJvha7vhfDzbbP/T3rXdZHKmMeixrHfDZEoPWCYQZ75cLZ14E3BefHnd1qXQ4uOQgpaNAjQxx4=
+Jan 17, 2020 5:21:24 PM GossipServer chat
+INFO: Original Message: Hodinn
+Encrypted Message: dSiRl+jjkPm7CfhmwxY6Xw==
 
-Jan 15, 2020 9:02:45 PM GossipServer chat
-INFO: Original Message: 
-Encrypted Message: muhuPNIx/Tn3ZHJ5h2YZEKN7C0yZDN3y00Q+Lxq/T7kiiF0wNqX3qT9ANlqwkC9+x/KF7GVlC6snqw1agaKci+87OA6ozIxdA6ol0fGFBoCynGzGVaY61VLVCZ3dkT+IxsWwuGrEpaa2xID/fCxWiH5QxrasyZ4QeF4BfNS6lyM=
+Jan 17, 2020 5:26:54 PM GossipServer chat
+INFO: Original Message: null
+Encrypted Message: null
 
-Jan 15, 2020 9:04:15 PM GossipServer main
-SEVERE: null

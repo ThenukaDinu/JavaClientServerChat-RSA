@@ -20,16 +20,17 @@ import java.util.logging.SimpleFormatter;
 import Algorithm.RSAExample;
 public class GossipServer
 {	
-	PrivateKey myPrivateKey;
-	PublicKey clientPublicKey;
-	String receiveMessage, sendMessage, decryptedString, encryptedString;  
-	PKCS8EncodedKeySpec ks;
-	X509EncodedKeySpec ks2;
-	KeyFactory kf, kf2;
-	Path path, path2;
-	static Logger logger;
-	FileHandler fh;
-	ServerSocket sersock;
+	private PrivateKey myPrivateKey;
+	private PublicKey clientPublicKey;
+	private String receiveMessage, sendMessage, decryptedString, encryptedString;  
+	private PKCS8EncodedKeySpec ks;
+	private X509EncodedKeySpec ks2;
+	private KeyFactory kf, kf2;
+	private Path path, path2;
+	private static Logger logger;
+	private FileHandler fh;
+	private ServerSocket sersock;
+	private SimpleFormatter formatter;
 
 	public GossipServer() throws Exception {
 		sersock = new ServerSocket(3000);
@@ -37,7 +38,7 @@ public class GossipServer
 		logger = Logger.getLogger("MyLog");
 		fh = new FileHandler("F:/NIBM/DOC/Software security/CourseWork02/HNDSE Software security Chat App/Client Server Chat With RSA/logs/ServerLogFile.log");
 		logger.addHandler(fh);
-		SimpleFormatter formatter = new SimpleFormatter();
+		formatter = new SimpleFormatter();
 		fh.setFormatter(formatter);
 		logger.setUseParentHandlers(false);
 		logger.info("Server Connected.\n");
@@ -47,7 +48,7 @@ public class GossipServer
 	{
 		path = Paths.get("F:\\NIBM\\DOC\\Software security\\CourseWork02\\HNDSE Software security Chat App\\Client Server Chat With RSA\\GeneratePublicPrivateKeys\\Server\\privateKey");
 		byte[] myPrivateKeyByte = Files.readAllBytes(path);
-		Path path2 = Paths.get("F:\\NIBM\\DOC\\Software security\\CourseWork02\\HNDSE Software security Chat App\\Client Server Chat With RSA\\GeneratePublicPrivateKeys\\client\\publicKey");
+		path2 = Paths.get("F:\\NIBM\\DOC\\Software security\\CourseWork02\\HNDSE Software security Chat App\\Client Server Chat With RSA\\GeneratePublicPrivateKeys\\client\\publicKey");
 		byte[] clientPublicKeyByte = Files.readAllBytes(path2);
 
 		/* Generate private key. */

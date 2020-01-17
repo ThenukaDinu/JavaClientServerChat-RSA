@@ -30,6 +30,7 @@ public class GossipClient
 	static Logger logger;
 	FileHandler fh;
 	Socket sock;
+	SimpleFormatter formatter;
 
 	public GossipClient() throws Exception {
 		sock = new Socket("127.0.0.1", 3000);
@@ -37,7 +38,7 @@ public class GossipClient
 		logger = Logger.getLogger("MyLog");
 		fh = new FileHandler("F:/NIBM/DOC/Software security/CourseWork02/HNDSE Software security Chat App/Client Server Chat With RSA/logs/ClientLogFile.log");
 		logger.addHandler(fh);
-		SimpleFormatter formatter = new SimpleFormatter();
+		formatter = new SimpleFormatter();
 		fh.setFormatter(formatter);
 		logger.setUseParentHandlers(false);
 		logger.info("Client Connected.\n");
